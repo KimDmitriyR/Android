@@ -27,19 +27,16 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        // RecyclerView
         recyclerView = findViewById(R.id.recyclerViewOrders)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = OrderAdapter(
             emptyList(),
 
-            // 1️⃣ УДАЛЕНИЕ (долгое нажатие)
             { order ->
                 deleteOrder(order.id!!)
             },
 
-            // 2️⃣ РЕДАКТИРОВАНИЕ (обычное нажатие)
             { order ->
                 val intent = Intent(this, AddOrderActivity::class.java)
                 intent.putExtra("orderId", order.id)
