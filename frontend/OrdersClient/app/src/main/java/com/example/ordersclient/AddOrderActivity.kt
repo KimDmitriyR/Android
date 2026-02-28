@@ -25,7 +25,6 @@ class AddOrderActivity : AppCompatActivity() {
         val editType = findViewById<EditText>(R.id.editType)
         val editDuration = findViewById<EditText>(R.id.editDuration)
 
-        // Получаем id (если редактирование)
         orderId = intent.getLongExtra("orderId", -1L)
 
         if (orderId != -1L) {
@@ -58,7 +57,7 @@ class AddOrderActivity : AppCompatActivity() {
             )
 
             if (orderId == -1L) {
-                // CREATE
+
                 RetrofitClient.api.createOrder(order)
                     .enqueue(object : Callback<Order> {
                         override fun onResponse(call: Call<Order>, response: Response<Order>) {
@@ -78,7 +77,7 @@ class AddOrderActivity : AppCompatActivity() {
                         }
                     })
             } else {
-                // UPDATE
+
                 RetrofitClient.api.updateOrder(orderId, order)
                     .enqueue(object : Callback<Order> {
                         override fun onResponse(call: Call<Order>, response: Response<Order>) {
