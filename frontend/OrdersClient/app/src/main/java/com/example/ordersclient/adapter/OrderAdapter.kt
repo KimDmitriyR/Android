@@ -11,7 +11,7 @@ import com.example.ordersclient.model.Order
 class OrderAdapter(
     private var orders: List<Order>,
     private val onDeleteClick: (Order) -> Unit,
-    private val onItemClick: (Order) -> Unit   // 👈 ДОБАВИЛИ
+    private val onItemClick: (Order) -> Unit   
 ) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
     class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,13 +33,11 @@ class OrderAdapter(
         holder.textCount.text = "Количество: ${order.count}"
         holder.textDuration.text = "Срок: ${order.duration}"
 
-        // ДОЛГОЕ нажатие — удалить
         holder.itemView.setOnLongClickListener {
             onDeleteClick(order)
             true
         }
 
-        // ОБЫЧНОЕ нажатие — редактировать
         holder.itemView.setOnClickListener {
             onItemClick(order)
         }
